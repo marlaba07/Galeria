@@ -22,6 +22,6 @@ La que yo utilicé para realizar este proyecto es TMDb API, la cual me permitió
 Su objetivo principal es proporcionar una capa de control y gestión de eventos en segundo plano para aplicaciones web. 
 Se ejecuta de forma independiente al hilo principal de la página y puede realizar tareas como la gestión de caché, notificaciones push y funciones sin conexión.
 - PWA (Progressive Web App): es una aplicación web que combina características y funcionalidades de las aplicaciones nativas de los dispositivos móviles con las ventajas de las aplicaciones web tradicionales. 
-Una PWA se desarrolla utilizando tecnologías web estándar como HTML, CSS y JavaScript, pero ofrece una experiencia de usuario similar a la de una aplicación nativa. Permitiendo poder 'descargar' la aplicación en sus dispositivos como si fuera una aplicación nativa. 
+Una PWA se desarrolla utilizando tecnologías web estándar como HTML, CSS y JavaScript, pero ofrece una experiencia de usuario similar a la de una aplicación nativa. Como por ejemplo, que tenga la opción de 'descargar' en la parte superior derecha del sitio web.
 
 Despliegue en: https://gallery-photos-react.netlify.app/
