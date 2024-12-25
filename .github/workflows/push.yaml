@@ -29,6 +29,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
 
+      - name: Install Amplify CLI
+        run: |
+          npm install -g @aws-amplify/cli
+
       # 3. Instalar dependencias
       - name: Instalar las dependencias
         run: |
