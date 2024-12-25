@@ -43,3 +43,19 @@ jobs:
       - name: Subir la carpeta build a S3
         run: |
           aws s3 cp build/ s3://${{ secrets.AWS_S3_BUCKET }}/build/ --recursive
+
+      # 7. Crear aplicación Amplify usando la carpeta build desde S3
+      - name: Crear y desplegar aplicación Amplify
+        run: |
+          # Crear un nuevo proyecto Amplify
+          amplify init --yes
+
+          # Agregar hosting de Amplify con S3 y CloudFront
+          amplify add hosting \
+            --hosting-name my-app-hosting \
+            --bucket-name ${{ secrets.AWS_S3_BUCKET }} \
+            --index-document index.html \
+            --error-document error.html
+
+          # Desplegar la aplicación
+          amplify publish --yes
