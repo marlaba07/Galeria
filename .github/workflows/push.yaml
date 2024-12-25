@@ -1,0 +1,50 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 5. Configurar credenciales de AWS
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # 1. Checkout del código fuente
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Configuración de Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+
+      # 3. Instalar dependencias
+      - name: Instalar las dependencias
+        run: |
+          npm install
+
+      # 3. Instalar dependencias
+      - name: Correr build
+        run: |
+          npm run build
+
+      # 4. Zippear el build
+      - name: Zippear el build
+        run: |
+          zip -r build.zip build/*
+
+      # 6. Subir el archivo ZIP a S3
+      - name: Subir a S3
+        run: |
+          aws s3 cp build.zip s3://${{ secrets.AWS_S3_BUCKET }}/
